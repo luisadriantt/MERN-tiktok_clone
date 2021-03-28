@@ -1,10 +1,25 @@
 import React from "react";
-import { Column } from "./FollowersColumn.styles";
+import {
+  Column,
+  FollowersSection,
+  Home,
+  Following,
+} from "./FollowersColumn.styles";
 
 export const FollowersColumn = () => {
   return (
     <Column>
-      <h1>Followers Column</h1>
+      <FollowersSection>
+        <Home />
+        <h2>For you</h2>
+      </FollowersSection>
+      <FollowersSection>
+        <Following />
+        <h2>Following</h2>
+      </FollowersSection>
+      <hr />
+      <br />
+      <p>Your top accounts</p>
     </Column>
   );
 };

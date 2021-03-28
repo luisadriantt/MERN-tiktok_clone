@@ -1,11 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import { HeaderContainer } from "./Header.styles";
+import { HeaderContainer, Logo, Upload, Personal } from "./Header.styles";
+import { Section } from "../suggested-box/SuggestedUsers.styles";
 
 export const Header = () => {
   return (
     <HeaderContainer>
-      <h1>HEADER</h1>
+      <Link to="/">
+        <Logo />
+      </Link>
+      <>
+        <Section>
+          <Link to="/upload">
+            <Upload />
+          </Link>
+          <Personal src="" />
+        </Section>
+      </>
     </HeaderContainer>
   );
 };
