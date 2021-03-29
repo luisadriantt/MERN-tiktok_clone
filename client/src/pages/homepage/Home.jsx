@@ -9,6 +9,16 @@ import axios from "axios";
 
 export const Home = () => {
   const [users, setUsers] = useState(null);
+
+  const updateFollow = async(user) => {
+    const newValue = !user.is_followed
+    const id = user._id
+    const data = {is_followed: newValue}
+
+    const res =  await axios.put(`http://localhost:8001/tiktok/posts/${id}`, data)
+    console.log(res.data)
+  }
+
   let sortedUsers;
   let topFiveFollowing;
   let topFiveNotFollowing;
@@ -19,7 +29,7 @@ export const Home = () => {
       setUsers(result.data)
     }
     fetchData()
-  }, [])
+  }, [users])
 
   if(users) {
     sortedUsers = users.sort((a,b) => a.id < b.id ? 1 : -1)
@@ -40,7 +50,7 @@ export const Home = () => {
       <FollowersColumn users={topFiveFollowing} />
       <div>
         {sortedUsers.map((user, index) => (
-          <Card key={index} user={user}/>
+          <Card key={index} user={user} toggleFollow={toToggle => updateFollow(toToggle)}/>
         ))}
       </div>
       <SuggestedUsers users={topFiveNotFollowing} />

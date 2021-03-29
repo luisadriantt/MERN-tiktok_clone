@@ -28,12 +28,12 @@ export const Card = ({ user, toggleFollow }) => {
             </>
         {user.is_followed ?
             (
-             <FollowedButton>
+             <FollowedButton onClick={() => toggleFollow(user)}>
                Following 
              </FollowedButton>
             ) :
             (
-              <FollowButton>
+              <FollowButton onClick={() => toggleFollow(user)}>
                 Follow
               </FollowButton>
             )
