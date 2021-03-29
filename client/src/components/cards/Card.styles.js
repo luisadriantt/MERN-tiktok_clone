@@ -9,9 +9,14 @@ export const CardContainer  = styled.div`
 export const MinicardContainer  = styled.div`
     margin: 10px 0 0 0;
     justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
 `
 
 export const MicrocardContainer  = styled.div`
+    display: flex;
+    flex-direction: row;
     margin: 10px 0 0 0;
 `
 

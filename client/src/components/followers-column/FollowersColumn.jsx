@@ -1,4 +1,7 @@
 import React from "react";
+
+import {MicroCard} from "../cards/MicroCard"
+
 import {
   Column,
   FollowersSection,
@@ -6,7 +9,9 @@ import {
   Following,
 } from "./FollowersColumn.styles";
 
-export const FollowersColumn = () => {
+export const FollowersColumn = (topFiveFollowing) => {
+  const {users} = topFiveFollowing
+
   return (
     <Column>
       <FollowersSection>
@@ -20,6 +25,13 @@ export const FollowersColumn = () => {
       <hr />
       <br />
       <p>Your top accounts</p>
+      <br/>
+      {users && users.map((user, index) => (
+        <MicroCard
+          key={index}
+          user={user}
+        />
+      ))}
     </Column>
   );
 };

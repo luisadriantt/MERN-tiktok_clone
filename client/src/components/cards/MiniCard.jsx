@@ -1,11 +1,10 @@
 import React from 'react'
 
 import { Section } from '../suggested-box/SuggestedUsers.styles'
-import { MinicardContainer, UserProfile } from './Card.styles'
+import { MinicardContainer, UserProfile, FollowedButton, FollowButton } from './Card.styles'
 
 export const MiniCard = ({ user, toggleFollow }) => {
   return (
-    <Section>
       <MinicardContainer>
         <Section>
           <UserProfile  src={user.avatar} width={'100%'} />
@@ -14,7 +13,18 @@ export const MiniCard = ({ user, toggleFollow }) => {
             <p>{user.name}</p>
           </div>
         </Section>
+        {user.is_followed ?
+            (
+             <FollowedButton>
+               Following 
+             </FollowedButton>
+            ) :
+            (
+              <FollowButton>
+                Follow
+              </FollowButton>
+            )
+        }
       </MinicardContainer>
-    </Section>
   )
 }
