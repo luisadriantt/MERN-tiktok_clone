@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+
+import axios from "axios";
 
 import { FollowersColumn } from "../../components/followers-column/FollowersColumn";
 import { SuggestedUsers } from "../../components/suggested-box/SuggestedUsers";
 import { Card } from "../../components/cards/Card";
 
+import { PostsContext } from "../../components/context/PostsContext";
+
 import { HomeContainer } from "./Home.styles";
-import axios from "axios";
 
 export const Home = () => {
   const [users, setUsers] = useState(null);
-
-  const updateFollow = async(user) => {
-    const newValue = !user.is_followed
-    const id = user._id
-    const data = {is_followed: newValue}
-
-    const res =  await axios.put(`http://localhost:8001/tiktok/posts/${id}`, data)
-    console.log(res.data)
-  }
+  const {updateFollow} = useContext(PostsContext)
 
   let sortedUsers;
   let topFiveFollowing;
   let topFiveNotFollowing;
 
   useEffect(() => {
-    const fetchData = async() => {
-      const result = await axios.get("http://localhost:8001/tiktok/posts")
-      setUsers(result.data)
+    const getPosts = async () => {
+      const res = await axios.get("http://localhost:8001/tiktok/posts")
+      setUsers(res.data)
     }
-    fetchData()
+    getPosts()
   }, [users])
 
   if(users) {

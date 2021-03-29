@@ -6,9 +6,9 @@ import { UploadPage, UploadContainer, ImageUpload, FormSection, InputSection, La
 import { Section, Break} from "../../components/suggested-box/SuggestedUsers.styles";
 
 export const Upload = () => {
-  const username = 'shupalo'
-  const name = 'shupalo shupalo'
-  const avatar = 'https://i.imgur.com/QwZod6m.png'
+  const username = 'user'
+  const name = 'New User'
+  const avatar = 'https://i.ebayimg.com/images/g/c3IAAOSw9RlgCIT4/s-l1600.jpg'
   const [video, setVideo] = useState(null)
   const [caption, setCaption] = useState(null)
   const today = new Date()
@@ -29,7 +29,7 @@ export const Upload = () => {
         timestamp: timestamp,
         button_visible: false  
       }
-      axios.post('http://localhost/tiktok/posts', data)
+      axios.post('http://localhost:8001/tiktok/posts', data)
       .then((response) => {
       console.log(response)
       })

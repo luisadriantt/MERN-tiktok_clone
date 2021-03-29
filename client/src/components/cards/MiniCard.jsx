@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { PostsContext } from '../context/PostsContext'
 
 import { Section } from '../suggested-box/SuggestedUsers.styles'
 import { MinicardContainer, UserProfile, FollowedButton, FollowButton } from './Card.styles'
 
-export const MiniCard = ({ user, toggleFollow }) => {
+export const MiniCard = ({ user }) => {
+  const {updateFollow} = useContext(PostsContext)
+
   return (
       <MinicardContainer>
         <Section>
@@ -15,12 +19,12 @@ export const MiniCard = ({ user, toggleFollow }) => {
         </Section>
         {user.is_followed ?
             (
-             <FollowedButton>
+             <FollowedButton onClick={() => updateFollow(user)}>
                Following 
              </FollowedButton>
             ) :
             (
-              <FollowButton>
+              <FollowButton onClick={() => updateFollow(user)}>
                 Follow
               </FollowButton>
             )
