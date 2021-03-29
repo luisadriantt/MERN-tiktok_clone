@@ -10,6 +10,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8001;
 const connection_url = process.env.MONGODB;
+console.log("hola")
 
 // Middlewares
 app.use(express.json());
@@ -45,6 +46,19 @@ app.get("/tiktok/posts", (req, res) => {
       res.status(200).send(data);
     }
   });
+});
+
+app.put("/tiktok/posts/:id", (req, res) => {
+  const dbPosts = req.body;
+  const condition = {_id: req.params.id}
+
+  Posts.updateOne(condition, dbPosts, (error, data) => {
+    if (error) {
+      res.status(500).send(error);
+    } else {
+      res.status(200).send(data);
+    } 
+  })
 });
 
 // Listener
